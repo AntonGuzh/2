@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title%}Редактор{% endblock %}
+
+{% block link%}<link rel="stylesheet" href="../static/form.css">{% endblock %}
+
+{% block body %}
+    {% if request.user.is_authenticated %}
+    <form id="redactor" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-main">
+            {% for item in form %}
+                <div class="form-div"><label class="form-label" for="{{ item.id_for_label }}">{{ item.label }}: </label>{{ item }}</div>
+                <div class="form-error">{{item.errors}}</div>
+            {% endfor %}
+        </div>
+        <div class="form-end"></div>
+
+        <button form="redactor" type="submit">Сохранить</button>
+    </form>
+    {% else %}
+    <h2>Для простротра этой страницы Вам требуется авторизация</h2>
+    {% endif %}
+{% endblock %}

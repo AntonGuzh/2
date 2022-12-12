@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Создай своё резюме{% endblock %}</title>
+        <link rel="stylesheet" href="../static/base.css">
+        {% block link %}{% endblock %}
+    </head>
+    <body>
+        <div>
+            <ul class="nav-list">
+                {% url 'list_page' as url_list_page %}
+                <li {% if request.path == url_list_page %}class="active"{% endif %} >
+                    <a href="{{ url_list_page }}">
+                        Мои резюме
+                    </a>
+                </li>
+                {% url 'register_page' as url_register_page %}
+                <li {% if request.path == url_register_page %}class="active"{% endif %}>
+                    <a href="{{ url_register_page }}">
+                        Регистрация
+                    </a>
+                </li>
+                {% url 'login_page' as url_login_page %}
+                <li {% if request.path == url_login_page %}class="active"{% endif %} >
+                    <a href="{{ url_login_page }}">
+                        Авторизация
+                    </a>
+                </li>
+                {% url 'redactor_page' as url_redactor_page %}
+                <li {% if request.path == url_redactor_page %}class="active"{% endif %} >
+                    <a href="{{ url_redactor_page }}">
+                        Редактор
+                    </a>
+                </li>
+                {% url 'logout_page' as url_logout_page %}
+                <li class="exit">
+                    <a href="{{ url_logout_page }}">
+                        Выход
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            {% block body %}Тут пока пусто :({% endblock %}
+        </div>
+    </body>
+</html>

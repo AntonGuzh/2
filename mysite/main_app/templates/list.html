@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title%}Ваши резюме{% endblock %}
+
+{% block link%}<link rel="stylesheet" href="../static/list.css">{% endblock %}
+
+{% block body %}
+    {% if request.user.is_authenticated %}
+    {% if models %}
+    <ul>
+        {% for model in models %}
+            <li class="without-style">
+                <div class="cv-row">
+                    <b>{{ model.full_name }}{{ ": " }}{{ model.desired_position }}</b>
+                    <form action="{% url 'delete_page' model.pk %}" method="POST" class="cv-button delete">
+                        {% csrf_token %}
+                        <input type="submit" value="Удалить">
+                    </form>
+                    <form action="{% url 'update_page' model.pk %}" method="GET" class="cv-button update">
+                        <input type="submit" value="Изменить">
+                    </form>
+                    <form action="{% url 'download_page' model.pk %}" method="GET" class="cv-button download">
+                        <input type="submit" value="Скачать">
+                    </form>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2>Пока что тут пусто, самое время создать свое первое резюме</h2>
+    {% endif %}
+    {% else %}
+    <h2>Для простротра этой страницы Вам требуется авторизация</h2>
+    {% endif %}
+{% endblock %}

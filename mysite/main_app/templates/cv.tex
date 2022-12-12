@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage[english,russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in]{geometry}
+	\textheight=700px
+\usepackage{url}
+
+\usepackage{tikz}
+
+\newcommand{\Header}[4]{\Large\textbf{\MakeUppercase{#1}}\hfill\large#3\\\textit{#2}\hfill#4\\}
+
+\newcommand{\Skip}{\hfill\break\hfill\break\hfill}
+
+\newcommand{\Part}[1]{\textbf{\Large #1}\\
+\begin{tikzpicture}
+    \draw (0, 0) -- (\textwidth, 0);
+\end{tikzpicture}\\
+}
+
+\pagestyle{empty}
+
+\begin{document}
+\Header{
+\VAR{ m.full_name }
+}
+{
+\VAR{ m.desired_position }
+}
+{
+\BLOCK{ if m.phone_number: }
+\VAR{ "+7(" + m.phone_number[:3] + ")" + m.phone_number[3:6] + "-" + m.phone_number[6:8] + "-" + m.phone_number[8:] }
+\BLOCK{ endif }
+}
+{
+\BLOCK{ if m.email: }
+\VAR{ m.email }
+\BLOCK{ endif }
+}
+
+\BLOCK{ if m.photo }
+\begin{figure}[!h]
+    \phantom{.}\hfill
+    \includegraphics[width=3cm]{\VAR{ m.photo }}
+\end{figure}
+\BLOCK{ endif }
+
+\BLOCK{ if m.photo }\Skip\BLOCK{ endif }
+\BLOCK{ if m.skills }
+\Part{Навыки}
+\begin{itemize}
+    \BLOCK{ for line in m.skills.split('\n'): }
+    \item \VAR{ line }
+    \BLOCK{ endfor }
+\end{itemize}
+\BLOCK{ endif }
+
+\BLOCK{ if m.education }
+\Part{Образование}
+\begin{itemize}
+    \BLOCK{ for line in m.education.split('\n'): }
+    \item \VAR{ line }
+    \BLOCK{ endfor }
+\end{itemize}
+\BLOCK{ endif }
+
+\BLOCK{ if m.experience }
+\Part{Опыт}
+\begin{itemize}
+    \BLOCK{ for line in m.experience.split('\n'): }
+    \item \VAR{ line }
+    \BLOCK{ endfor }
+\end{itemize}
+\BLOCK{ endif }
+\end{document}

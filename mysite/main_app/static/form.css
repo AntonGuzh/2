@@ -1,0 +1,15 @@
+.form-div {clear:both; text-align:right; line-height:30px;}
+
+.form-label {float:left; padding-right:10px;}
+
+.form-main {float:left;}
+
+.form-end {clear:both;}
+
+div.form-error {
+    border: 0px black solid;
+    border-radius: 5px;
+    align-content: center;
+    margin-bottom: 5px;
+    background-color: #E78383;
+}

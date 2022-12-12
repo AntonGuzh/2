@@ -1,0 +1,38 @@
+.without-style {list-style: none;}
+
+form.cv-button input {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+form.cv-button {
+    display:inline;
+    float: right;
+    margin-right: 0.5%;
+    margin-top: 10px;
+}
+
+form.download input {background-color: #9DB23B;}
+form.update input {background-color: #5F4D9A;}
+form.delete input {background-color: #B83D3D;}
+
+div.cv-row {
+    border: 1px black solid;
+    border-color: #43307F;
+    border-radius: 5px;
+    height: 60px;
+    align-content: center;
+    margin-bottom: 5px;
+}
+
+div.cv-row b{
+    line-height: 60px;
+    height: 60px;
+    padding: 0 15px;
+}
+
+div.content ul {
+    padding-left: 2%;
+    padding-right: 2%;
+}
